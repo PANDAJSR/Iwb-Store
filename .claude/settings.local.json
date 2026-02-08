@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(where:*)",
+      "Bash(rustc --version:*)",
+      "Bash(echo:*)",
+      "Bash(/c/Users/PANDA-JSR/.cargo/bin/cargo --version:*)",
+      "Bash(cargo install:*)",
+      "Bash(source:*)",
+      "Bash(cargo --version:*)"
+    ]
+  }
+}
