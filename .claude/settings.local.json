@@ -8,7 +8,15 @@
       "Bash(/c/Users/PANDA-JSR/.cargo/bin/cargo --version:*)",
       "Bash(cargo install:*)",
       "Bash(source:*)",
-      "Bash(cargo --version:*)"
+      "Bash(cargo --version:*)",
+      "Bash(cargo check:*)",
+      "Bash(npm install)",
+      "Bash(pkill:*)",
+      "Bash(cargo build:*)",
+      "Bash(tasklist:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(netstat:*)"
     ]
   }
 }

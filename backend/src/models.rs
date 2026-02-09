@@ -1,0 +1,19 @@
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct User {
+    #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<mongodb::bson::oid::ObjectId>,
+    pub name: String,
+    pub email: String,
+    pub age: Option<u32>,
+    pub created_at: Option<chrono::DateTime<chrono::Utc>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserQuery {
+    pub name: Option<String>,
+    pub email: Option<String>,
+    pub min_age: Option<u32>,
+    pub max_age: Option<u32>,
+}
