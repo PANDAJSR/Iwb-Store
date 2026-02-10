@@ -1,36 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { Box, Container } from '@mui/material';
+import LeftNavigation from './components/LeftNavigation';
+import AppLibrary from './components/AppLibrary';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedItem, setSelectedItem] = useState('appLibrary');
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>MyApp Desktop</h1>
-      <p>基于 Tauri + React + Rust 构建的桌面应用</p>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        点击上面的按钮与 Tauri 应用交互
-      </p>
-    </>
-  )
+    <Box sx={{ display: 'flex', height: '100vh' }}>
+      <LeftNavigation
+        selectedItem={selectedItem}
+        onSelectItem={setSelectedItem}
+      />
+      <Container maxWidth={false} sx={{ flex: 1, pt: 3 }}>
+        {selectedItem === 'appLibrary' && <AppLibrary />}
+      </Container>
+    </Box>
+  );
 }
 
 export default App

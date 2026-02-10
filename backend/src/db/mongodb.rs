@@ -5,9 +5,11 @@ use mongodb::{
     Client, Database, Collection,
 };
 use tracing::info;
-use crate::models::User;
+use crate::models::{User, AppMetadata};
 use futures_util::stream::TryStreamExt;
+use std::collections::HashMap;
 
+#[derive(Clone)]
 pub struct MongoDB {
     client: Client,
     database: Database,
@@ -137,6 +139,28 @@ impl MongoDB {
 
         let users = collection.find(doc! {}).with_options(options).await?.try_collect().await?;
         Ok(users)
+    }
+
+    /// 获取 apps-metadata 集合
+    pub fn apps_metadata_collection(&self) -> Collection<AppMetadata> {
+        self.database.collection::<AppMetadata>("apps-metadata")
+    }
+
+    /// 获取所有 apps metadata（使用灵活的Map结构避免字段缺失错误）
+    pub async fn get_all_apps_metadata_flexible(&self) -> Result<Vec<HashMap<String, mongodb::bson::Bson>>> {
+        let collection = self.database.collection::<mongodb::bson::Document>("apps-metadata");
+        let mut cursor = collection.find(doc! {}).await?;
+        let mut results = Vec::new();
+
+        while let Some(document) = cursor.try_next().await? {
+            let mut map = HashMap::new();
+            for (key, value) in document {
+                map.insert(key, value);
+            }
+            results.push(map);
+        }
+
+        Ok(results)
     }
 }
 

@@ -16,7 +16,19 @@
       "Bash(tasklist:*)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(netstat:*)"
+      "Bash(netstat:*)",
+      "Bash(cargo run)",
+      "Bash(cargo run --bin:*)",
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "WebFetch(domain:actifyjs.com)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm update:*)",
+      "Bash(npm run dev:*)",
+      "Bash(cmd:*)",
+      "Bash(powershell -Command:*)"
     ]
   }
 }
